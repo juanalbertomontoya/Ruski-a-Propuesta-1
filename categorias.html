@@ -3,14 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ruskiña — Joyería</title>
+  <title>Pendientes — Ruskiña Joyería</title>
+  <meta name="description" content="Descubre nuestra colección de pendientes artesanales bañados en oro 18k. Diseños únicos, atemporales y llenos de personalidad para brillar cada día." />
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Tenor+Sans&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    h1, h2, h3, h4, h5 {
-      font-weight: normal !important;
-    }
+    h1, h2, h3, h4, h5 { font-weight: normal !important; }
 
     :root {
       --bg: #EAE9E4;
@@ -18,6 +17,7 @@
       --mid: #5a5a54;
       --accent: #c9a96e;
       --white: #ffffff;
+      --border: rgba(0,0,0,.13);
       --font-body: 'Montserrat', sans-serif;
       --font-heading: 'Tenor Sans', serif;
     }
@@ -57,6 +57,11 @@
       z-index: 100;
     }
 
+    nav.breadcrumb {
+      z-index: 2;
+      justify-content: start;
+    }
+
     .nav-logo {
       display: inline-flex;
       align-items: center;
@@ -70,7 +75,6 @@
       width: auto;
       height: 38px;
       max-width: 160px;
-      background: transparent;
     }
 
     .nav-links {
@@ -118,11 +122,8 @@
     }
 
     .menu-toggle svg {
-      width: 24px;
-      height: 24px;
-      stroke: var(--dark);
-      fill: none;
-      stroke-width: 1.7;
+      width: 24px; height: 24px;
+      stroke: var(--dark); fill: none; stroke-width: 1.7;
     }
 
     /* ── CATEGORY NAV ── */
@@ -138,9 +139,7 @@
       -webkit-overflow-scrolling: touch;
       scrollbar-width: none;
     }
-
     .cat-nav::-webkit-scrollbar { display: none; }
-
     .cat-nav a {
       font-size: 11px;
       letter-spacing: .1em;
@@ -150,113 +149,147 @@
       transition: opacity .2s;
     }
     .cat-nav a:hover { opacity: .5; }
+    .cat-nav a.active {
+      border-bottom: 1.5px solid var(--dark);
+      padding-bottom: 2px;
+    }
 
-    /* ── HERO ── */
-    .hero {
-      position: relative;
-      height: 92vh;
-      min-height: 560px;
-      overflow: hidden;
+    /* ── BREADCRUMB ── */
+    .breadcrumb {
+      padding: 18px 40px 0;
       display: flex;
-      align-items: flex-end;
+      align-items: center;
+      gap: 8px;
     }
 
-    .hero-bg {
-      position: absolute;
-      inset: 0;
-      background-size: cover;
-      background-position: center 30%;
-      transition: none;
-    }
-
-    .hero-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to top, rgba(26,26,24,.6) 0%, rgba(26,26,24,0) 55%);
-    }
-
-    .hero-content {
-      position: relative;
-      padding: 0 60px 64px;
-      max-width: 600px;
-    }
-
-    .hero-eyebrow {
-      font-size: 10px;
-      letter-spacing: .2em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,.7);
-      margin-bottom: 14px;
-    }
-
-    .hero-title {
-      font-family: var(--font-heading);
-      font-size: clamp(44px, 6vw, 80px);
-      color: var(--white);
-      line-height: 1.05;
-      letter-spacing: -.02em;
-      margin-bottom: 28px;
-    }
-
-    .hero-cta {
-      display: inline-block;
-      padding: 14px 36px;
-      background: var(--white);
-      color: var(--dark);
+    .breadcrumb a, .breadcrumb span {
       font-size: 11px;
-      letter-spacing: .12em;
+      letter-spacing: .06em;
       text-transform: uppercase;
+      color: #8a8a82;
       text-decoration: none;
-      transition: background .2s, color .2s;
+      transition: color .2s;
     }
-    .hero-cta:hover { background: var(--accent); color: var(--white); }
-
-    /* ── SECTION HEADER ── */
-    .section-header {
-      display: flex;
-      align-items: flex-end;
-      justify-content: space-between;
-      padding: 64px 40px 32px;
-    }
-
-    .section-label {
+    .breadcrumb a:hover { color: var(--dark); }
+    .breadcrumb .sep {
+      color: #aaa9a2;
       font-size: 10px;
-      letter-spacing: .2em;
-      text-transform: uppercase;
-      color: var(--mid);
-      margin-bottom: 8px;
+    }
+    .breadcrumb .current {
+      color: #6b6b64;
+      font-weight: 500;
     }
 
-    .section-title {
+    /* ── CATEGORY HEADER ── */
+    .cat-header {
+      padding: 24px 40px 28px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .cat-header__title {
       font-family: var(--font-heading);
-      font-size: clamp(32px, 4vw, 52px);
+      font-size: clamp(34px, 4vw, 52px);
       letter-spacing: -.02em;
       color: var(--dark);
       line-height: 1;
+      margin-bottom: 10px;
     }
 
-    .section-link {
+    .cat-header__desc {
+      font-size: 12px;
+      line-height: 1.7;
+      color: #7a7a72;
+      max-width: 580px;
+    }
+
+    /* ── SUBCATEGORY PILLS ── */
+    .subcat-row {
+      padding: 20px 40px 24px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .subcat-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      height: 60px;
+      padding: 0 16px 0 6px;
+      border: 1px solid rgba(0,0,0,.15);
+      background: var(--white);
+      cursor: pointer;
+      text-decoration: none;
+      color: var(--dark);
+      transition: border-color .2s, box-shadow .2s;
+    }
+    .subcat-pill:hover {
+      border-color: var(--dark);
+      box-shadow: 0 2px 12px rgba(0,0,0,.08);
+    }
+
+    .subcat-pill__img {
+      width: 48px;
+      height: 48px;
+      object-fit: cover;
+      display: block;
+      background: #f0ede8;
+    }
+
+    .subcat-pill__name {
       font-size: 11px;
+      letter-spacing: .07em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    /* ── FILTER BAR ── */
+    .filter-bar {
+      padding: 18px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .filter-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: none;
+      border: 1px solid rgba(0,0,0,.18);
+      padding: 9px 18px;
+      cursor: pointer;
+      font-family: var(--font-body);
+      font-size: 11px;
+      font-weight: 600;
       letter-spacing: .1em;
       text-transform: uppercase;
       color: var(--dark);
-      text-decoration: underline;
-      text-underline-offset: 3px;
+      transition: background .2s, border-color .2s;
+    }
+    .filter-btn:hover { background: var(--dark); color: var(--white); }
+    .filter-btn:hover svg { stroke: var(--white); }
+    .filter-btn svg { width: 16px; height: 16px; stroke: var(--dark); fill: none; transition: stroke .2s; }
+
+    .filter-count {
+      font-size: 11px;
+      color: var(--mid);
+      letter-spacing: .04em;
     }
 
-    /* ── PRODUCT CAROUSEL ── */
-    .carousel-wrap {
-      position: relative;
+    /* ── PRODUCTS GRID ── */
+    .products-section {
       padding: 0 40px 64px;
     }
 
-    .carousel {
+    .products-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       gap: 16px;
     }
 
-    /* ── PRODUCT CARD — THE MAGIC HOVER EFFECT ── */
+    /* ── PRODUCT CARD ── */
     .product-card {
       position: relative;
       background: #FBF7F4;
@@ -266,7 +299,6 @@
     }
     .product-card:hover { box-shadow: 0 12px 40px rgba(0,0,0,.18); }
 
-    /* Lifestyle (model) image — covers THE ENTIRE CARD as background */
     .product-card__img-model {
       position: absolute;
       inset: 0;
@@ -279,14 +311,12 @@
     }
     .product-card:hover .product-card__img-model { opacity: 1; }
 
-    /* Image container */
     .product-card__img-wrap {
       position: relative;
       aspect-ratio: 3/4;
-      overflow: visible; /* allow product image to sit above, model bleeds to card edges */
+      overflow: visible;
     }
 
-    /* Product (flat) image — visible at rest, fades out on hover */
     .product-card__img-product {
       position: absolute;
       inset: 0;
@@ -297,16 +327,11 @@
       z-index: 1;
       background: #FBF7F4;
     }
-    .product-card:hover .product-card__img-product {
-      opacity: 0;
-      background: transparent;
-    }
+    .product-card:hover .product-card__img-product { opacity: 0; background: transparent; }
 
-    /* Tag badges */
     .product-card__tags {
       position: absolute;
-      top: 12px;
-      left: 12px;
+      top: 12px; left: 12px;
       display: flex;
       gap: 6px;
       z-index: 2;
@@ -322,15 +347,12 @@
       transition: background .3s, color .3s;
     }
     .tag.filled { background: #e2c4ac; color: var(--dark); }
-
     .product-card:hover .tag { background: rgba(255,255,255,.2); color: var(--white); }
     .product-card:hover .tag.filled { background: rgba(255,255,255,.3); color: var(--white); }
 
-    /* Wishlist button */
     .product-card__wish {
       position: absolute;
-      top: 12px;
-      right: 12px;
+      top: 12px; right: 12px;
       z-index: 2;
       background: none;
       border: none;
@@ -341,7 +363,6 @@
     .product-card__wish svg { width: 20px; height: 20px; stroke: var(--white); fill: none; }
     .product-card:hover .product-card__wish { opacity: 1; }
 
-    /* Info area */
     .product-card__info {
       padding: 16px;
       position: relative;
@@ -353,20 +374,15 @@
     .product-card__info::after {
       content: "";
       position: absolute;
-      top: -38%;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      height: 150%;
+      top: -38%; bottom: 0; left: 0;
+      width: 100%; height: 150%;
       background: linear-gradient(to top, #000000a8, #00000000);
       pointer-events: none;
       z-index: -1;
       opacity: 0;
       transition: opacity .45s ease;
     }
-
     .product-card:hover .product-card__info::after { opacity: 1; }
-
     .product-card:hover .product-card__info { background: transparent; }
 
     .product-card__name {
@@ -396,30 +412,15 @@
     }
     .product-card:hover .product-card__material { color: rgba(255,255,255,.65); }
 
-    /* Stars */
-    .product-card__stars {
-      display: flex;
-      align-items: center;
-      gap: 4px;
-    }
+    .product-card__stars { display: flex; align-items: center; gap: 4px; }
     .stars { color: var(--accent); font-size: 12px; transition: color .3s; }
     .product-card:hover .stars { color: rgba(255,255,255,.9); }
-    .review-count {
-      font-size: 10px;
-      color: var(--mid);
-      transition: color .3s;
-    }
+    .review-count { font-size: 10px; color: var(--mid); transition: color .3s; }
     .product-card:hover .review-count { color: rgba(255,255,255,.65); }
 
-    /* Color swatches */
-    .product-card__swatches {
-      display: flex;
-      gap: 6px;
-      margin-top: 8px;
-    }
+    .product-card__swatches { display: flex; gap: 6px; margin-top: 8px; }
     .swatch {
-      width: 14px;
-      height: 14px;
+      width: 14px; height: 14px;
       border-radius: 50%;
       border: 1.5px solid transparent;
       cursor: pointer;
@@ -429,19 +430,14 @@
     .swatch.active { border-color: var(--dark); }
     .product-card:hover .swatch.active { border-color: var(--white); }
 
-    /* Add to bag button on hover */
     .product-card__add {
       position: absolute;
-      bottom: 16px;
-      right: 16px;
-      width: 36px;
-      height: 36px;
+      bottom: 16px; right: 16px;
+      width: 36px; height: 36px;
       background: var(--white);
       border: none;
       border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      display: flex; align-items: center; justify-content: center;
       cursor: pointer;
       opacity: 0;
       transform: scale(.8);
@@ -451,160 +447,29 @@
     .product-card__add svg { width: 16px; height: 16px; stroke: var(--dark); fill: none; }
     .product-card:hover .product-card__add { opacity: 1; transform: scale(1); }
 
-    /* ── CATEGORIES GRID ── */
-    .categories {
-      padding: 0 40px 80px;
+    /* ── SEO BLOCK BOTTOM ── */
+    .seo-block {
+      padding: 56px 40px 72px;
+      border-top: 1px solid var(--border);
     }
 
-    .categories-grid {
-      display: grid;
-      grid-template-columns: repeat(6, 1fr);
-      gap: 8px;
-    }
-
-    .cat-card {
-      position: relative;
-      aspect-ratio: 2/3;
-      overflow: hidden;
-      cursor: pointer;
-    }
-
-    .cat-card img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform .6s ease;
-    }
-    .cat-card:hover img { transform: scale(1.05); }
-
-    .cat-card-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to top, rgba(26,26,24,.65) 0%, transparent 50%);
-    }
-
-    .cat-card-label {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      padding: 20px 16px;
-    }
-
-    .cat-card-name {
+    .seo-block__title {
       font-family: var(--font-heading);
-      font-size: 14px;
+      font-size: clamp(24px, 3vw, 36px);
       letter-spacing: -.01em;
-      color: var(--white);
-      display: block;
-      margin-bottom: 2px;
-      text-transform: uppercase;
-    }
-
-    .cat-card-link {
-      font-size: 10px;
-      letter-spacing: .12em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,.7);
-    }
-
-    /* ── MARQUEE / STRIP ── */
-    .marquee-strip {
-      background: var(--dark);
-      color: var(--white);
-      padding: 16px 0;
-      overflow: hidden;
-      white-space: nowrap;
-      margin-bottom: 80px;
-    }
-
-    .marquee-inner {
-      display: inline-flex;
-      animation: marquee 22s linear infinite;
-    }
-
-    .marquee-item {
-      font-family: var(--font-heading);
-      font-size: 20px;
-      letter-spacing: .04em;
-      padding: 0 40px;
-    }
-
-    .marquee-dot {
-      color: var(--accent);
-      padding: 0 10px;
-    }
-
-    @keyframes marquee {
-      from { transform: translateX(0); }
-      to { transform: translateX(-50%); }
-    }
-
-    /* ── EDITORIAL SPLIT ── */
-    .editorial {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      min-height: 560px;
-      margin-bottom: 80px;
-    }
-
-    .editorial-img {
-      overflow: hidden;
-    }
-    .editorial-img img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-      transition: transform .8s ease;
-    }
-    .editorial-img:hover img { transform: scale(1.04); }
-
-    .editorial-text {
-      background: var(--dark);
-      color: var(--white);
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: 80px 64px;
-    }
-
-    .editorial-eyebrow {
-      font-size: 10px;
-      letter-spacing: .2em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 20px;
-    }
-
-    .editorial-title {
-      font-family: var(--font-heading);
-      font-size: clamp(36px, 4vw, 56px);
-      letter-spacing: -.02em;
-      line-height: 1.05;
+      color: var(--dark);
       margin-bottom: 24px;
+      line-height: 1.15;
     }
 
-    .editorial-body {
-      font-size: 14px;
-      line-height: 1.8;
-      color: rgba(255,255,255,.65);
-      margin-bottom: 36px;
-      max-width: 360px;
+    .seo-block__body {
+      font-size: 13px;
+      line-height: 1.9;
+      color: #6b6b64;
     }
 
-    .editorial-cta {
-      display: inline-block;
-      border-bottom: 1px solid var(--accent);
-      font-size: 11px;
-      letter-spacing: .12em;
-      text-transform: uppercase;
-      color: var(--white);
-      text-decoration: none;
-      padding-bottom: 4px;
-      transition: color .2s, border-color .2s;
-    }
-    .editorial-cta:hover { color: var(--accent); }
+    .seo-block__body p { margin-bottom: 16px; }
+    .seo-block__body p:last-child { margin-bottom: 0; }
 
     /* ── NEWSLETTER ── */
     .newsletter {
@@ -612,7 +477,6 @@
       padding: 80px 40px;
       text-align: center;
     }
-
     .newsletter-title {
       font-family: var(--font-heading);
       font-size: clamp(28px, 4vw, 48px);
@@ -620,19 +484,12 @@
       color: var(--white);
       margin-bottom: 12px;
     }
-
     .newsletter-sub {
       font-size: 13px;
       color: rgba(255,255,255,.8);
       margin-bottom: 32px;
     }
-
-    .newsletter-form {
-      display: flex;
-      max-width: 420px;
-      margin: 0 auto;
-    }
-
+    .newsletter-form { display: flex; max-width: 420px; margin: 0 auto; }
     .newsletter-form input {
       flex: 1;
       padding: 14px 20px;
@@ -644,7 +501,6 @@
       outline: none;
     }
     .newsletter-form input::placeholder { color: var(--mid); }
-
     .newsletter-form button {
       padding: 14px 24px;
       background: var(--dark);
@@ -665,14 +521,12 @@
       color: rgba(255,255,255,.6);
       padding: 64px 40px 32px;
     }
-
     .footer-grid {
       display: grid;
       grid-template-columns: 2fr 1fr 1fr 1fr;
       gap: 48px;
       margin-bottom: 48px;
     }
-
     .footer-brand {
       font-family: var(--font-heading);
       font-size: 22px;
@@ -681,13 +535,7 @@
       color: var(--white);
       margin-bottom: 16px;
     }
-
-    .footer-tagline {
-      font-size: 13px;
-      line-height: 1.7;
-      max-width: 240px;
-    }
-
+    .footer-tagline { font-size: 13px; line-height: 1.7; max-width: 240px; }
     .footer-col h4 {
       font-size: 10px;
       letter-spacing: .15em;
@@ -695,7 +543,6 @@
       color: var(--white);
       margin-bottom: 16px;
     }
-
     .footer-col ul { list-style: none; }
     .footer-col ul li { margin-bottom: 10px; }
     .footer-col ul li a {
@@ -705,7 +552,6 @@
       transition: color .2s;
     }
     .footer-col ul li a:hover { color: var(--white); }
-
     .footer-bottom {
       border-top: 1px solid rgba(255,255,255,.1);
       padding-top: 24px;
@@ -713,9 +559,7 @@
       justify-content: space-between;
       align-items: center;
     }
-
     .footer-copy { font-size: 11px; }
-
     .footer-bottom-right {
       display: flex;
       align-items: center;
@@ -723,7 +567,6 @@
       flex-wrap: wrap;
       justify-content: flex-end;
     }
-
     .footer-credit {
       display: flex;
       align-items: center;
@@ -731,104 +574,42 @@
       font-size: 11px;
       color: rgba(255,255,255,.55);
     }
-
-    .footer-credit a {
-      color: rgba(255,255,255,.78);
+    .footer-credit a { color: rgba(255,255,255,.78); text-decoration: none; transition: color .2s; }
+    .footer-credit a:hover { color: var(--white); }
+    .footer-socials { display: flex; gap: 16px; }
+    .footer-socials a {
+      color: rgba(255,255,255,.5);
+      font-size: 11px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
       text-decoration: none;
       transition: color .2s;
     }
-
-    .footer-credit a:hover { color: var(--white); }
-
-    .footer-socials { display: flex; gap: 16px; }
-    .footer-socials a { color: rgba(255,255,255,.5); font-size: 11px; letter-spacing: .08em; text-transform: uppercase; text-decoration: none; transition: color .2s; }
     .footer-socials a:hover { color: var(--white); }
 
-    /* ── CAROUSEL NAV ARROWS ── */
-    .carousel-nav {
-      display: flex;
-      gap: 12px;
-      align-items: center;
-    }
-
-    .arr-btn {
-      width: 38px;
-      height: 38px;
-      border: 1px solid rgba(0,0,0,.2);
-      background: none;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: background .2s, border-color .2s;
-    }
-    .arr-btn:hover { background: var(--dark); border-color: var(--dark); }
-    .arr-btn:hover svg { stroke: var(--white); }
-    .arr-btn svg { width: 16px; height: 16px; stroke: var(--dark); fill: none; transition: stroke .2s; }
-
-
     /* ── RESPONSIVE ── */
-    @media (min-width: 1440px) {
-      nav,
-      .cat-nav,
-      .section-header,
-      .carousel-wrap,
-      .categories,
-      .newsletter,
-      footer {
-        padding-left: clamp(40px, 5vw, 96px);
-        padding-right: clamp(40px, 5vw, 96px);
-      }
-    }
-
     @media (max-width: 1180px) {
       nav { padding: 0 28px; }
       .cat-nav { justify-content: flex-start; padding: 14px 28px; }
-      .section-header { padding: 56px 28px 28px; }
-      .carousel-wrap { padding: 0 28px 56px; }
-      .carousel { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-      .categories { padding: 0 28px 72px; }
-      .categories-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
-      .editorial-text { padding: 64px 48px; }
+      .breadcrumb, .cat-header, .subcat-row, .filter-bar, .products-section, .seo-block { padding-left: 28px; padding-right: 28px; }
+      .products-grid { grid-template-columns: repeat(3, 1fr); }
       .footer-grid { grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 36px; }
     }
 
     @media (max-width: 900px) {
       nav { padding: 0 22px; }
-      .nav-links { gap: 20px; }
-      .nav-icons { gap: 14px; }
-      .carousel { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-      .categories-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-      .editorial { grid-template-columns: 1fr; min-height: auto; }
-      .editorial-img { order: 2; aspect-ratio: 4 / 3; }
-      .editorial-text { order: 1; padding: 56px 36px; }
-      .editorial-body { max-width: 560px; }
-      .footer-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .products-grid { grid-template-columns: repeat(2, 1fr); }
     }
 
     @media (max-width: 768px) {
       .announce { font-size: 9px; padding: 9px 14px; }
-
-      nav {
-        height: 62px;
-        padding: 0 16px;
-        position: sticky;
-        z-index: 1000;
-      }
-
-      .nav-logo-img {
-        height: 32px;
-        max-width: 120px;
-      }
-
+      nav { height: 62px; padding: 0 16px; }
+      .nav-logo-img { height: 32px; max-width: 120px; }
       .menu-toggle { display: inline-flex; }
-
       .nav-links {
         display: none;
         position: absolute;
-        top: 62px;
-        left: 0;
-        right: 0;
+        top: 62px; left: 0; right: 0;
         z-index: 999;
         flex-direction: column;
         gap: 0;
@@ -836,162 +617,51 @@
         border-bottom: 1px solid rgba(0,0,0,.08);
         box-shadow: 0 14px 28px rgba(0,0,0,.08);
       }
-
       .nav-links.is-open { display: flex; }
-
       .nav-links li { border-top: 1px solid rgba(0,0,0,.06); }
-
-      .nav-links a {
-        display: block;
-        padding: 16px 20px;
-        font-size: 11px;
-      }
-
+      .nav-links a { display: block; padding: 16px 20px; font-size: 11px; }
       .mobile-category-link { display: block; }
-
-      .cat-nav {
-        display: none;
-      }
-
+      .cat-nav { display: none; }
       .nav-icons { gap: 12px; }
-      .nav-icons svg { width: 19px; height: 19px; }
 
-      .cat-nav {
-        justify-content: flex-start;
-        gap: 24px;
-        padding: 13px 16px;
-      }
+      .breadcrumb, .cat-header, .subcat-row, .filter-bar, .products-section, .seo-block { padding-left: 16px; padding-right: 16px; }
 
-      .hero {
-        height: 76vh;
-        min-height: 520px;
-      }
+      .breadcrumb { padding-top: 14px; }
+      .cat-header { padding: 18px 16px 20px; }
+      .cat-header__title { font-size: clamp(28px, 9vw, 38px); }
 
-      .hero-bg { background-position: center center; }
+      .subcat-row { gap: 8px; }
+      .subcat-pill { height: 54px; }
+      .subcat-pill__img { width: 42px; height: 42px; }
 
-      .hero-content {
-        padding: 0 22px 44px;
-        max-width: 100%;
-      }
+      .filter-bar { padding: 14px 16px; }
 
-      .hero-title { font-size: clamp(40px, 12vw, 58px); }
-
-      .section-header {
-        align-items: flex-start;
-        padding: 46px 16px 24px;
-        gap: 18px;
-      }
-
-      .section-header > div:last-child {
-        width: 100%;
-        justify-content: space-between;
-      }
-
-      .carousel-nav { display: none; }
-
-      .carousel-wrap {
-        padding: 0 0 52px 16px;
-        overflow: hidden;
-      }
-
-      .carousel {
-        display: flex;
-        grid-template-columns: none;
-        gap: 12px;
-        overflow-x: auto;
-        overflow-y: hidden;
-        padding-right: 16px;
-        scroll-snap-type: x mandatory;
-        -webkit-overflow-scrolling: touch;
-        scrollbar-width: none;
-      }
-
-      .carousel::-webkit-scrollbar { display: none; }
-
-      .product-card {
-        flex: 0 0 calc(40% - 8px);
-        min-width: calc(40% - 8px);
-        scroll-snap-align: start;
-      }
-
+      .products-section { padding-bottom: 48px; }
+      .products-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
       .product-card__info { padding: 12px; }
-      .product-card__name,
-      .product-card__price { font-size: 12px; }
+      .product-card__name, .product-card__price { font-size: 12px; }
       .product-card__material { font-size: 9px; }
-      .product-card__tags { top: 8px; left: 8px; }
-      .tag { font-size: 8px; padding: 4px 6px; }
       .product-card__add { opacity: 1; transform: scale(.88); bottom: 10px; right: 10px; }
 
-      .categories { padding: 0 16px 56px; }
-
-      .categories-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 10px;
-      }
-
-      .cat-card-label { padding: 16px 12px; }
-      .cat-card-name { font-size: 13px; }
-
-      .marquee-strip { margin-bottom: 56px; }
-      .marquee-item { font-size: 17px; padding: 0 28px; }
-
-      .editorial { margin-bottom: 56px; }
-      .editorial-text { padding: 50px 24px; }
-      .editorial-img { aspect-ratio: 1 / 1; }
+      .seo-block { padding: 40px 16px 56px; }
 
       .newsletter { padding: 60px 18px; }
       .newsletter-form { display: grid; grid-template-columns: 1fr; gap: 10px; }
-      .newsletter-form input,
-      .newsletter-form button { width: 100%; }
+      .newsletter-form input, .newsletter-form button { width: 100%; }
 
       footer { padding: 54px 18px 28px; }
       .footer-grid { grid-template-columns: 1fr; gap: 34px; margin-bottom: 38px; }
-      .footer-tagline { max-width: 100%; }
-
-      .footer-bottom {
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        gap: 18px;
-        text-align: center;
-      }
-
-      .footer-bottom-right {
-        justify-content: center;
-        flex-direction: column;
-        gap: 14px;
-        text-align: center;
-      }
-
+      .footer-bottom { flex-direction: column; align-items: center; gap: 18px; text-align: center; }
+      .footer-bottom-right { justify-content: center; flex-direction: column; gap: 14px; text-align: center; }
       .footer-credit { justify-content: center; }
       .footer-socials { justify-content: center; }
     }
 
     @media (max-width: 480px) {
-      .nav-icons { gap: 10px; }
-      .nav-icons svg { width: 18px; height: 18px; }
-      .menu-toggle svg { width: 22px; height: 22px; }
-      .hero { min-height: 500px; }
-      .hero-cta { padding: 13px 26px; }
-      .product-card {
-        flex-basis: calc(40% - 7px);
-        min-width: calc(40% - 7px);
-      }
       .product-card__stars { display: none; }
-      .product-card__swatches { margin-top: 6px; }
       .swatch { width: 12px; height: 12px; }
     }
 
-    @media (max-width: 390px) {
-      .nav-logo-img { max-width: 105px; }
-      .nav-icons { gap: 8px; }
-      .product-card {
-        flex-basis: calc(44% - 8px);
-        min-width: calc(44% - 8px);
-      }
-    }
-
-    /* ── IMG FALLBACK (for broken CDN images in preview) ── */
     img { background: #f0ede8; }
   </style>
 </head>
@@ -1002,7 +672,9 @@
 
   <!-- NAV -->
   <nav>
-    <a href="#" class="nav-logo" aria-label="Ruskiña"><img src="https://ruskina.seolifeteam.com/wp-content/uploads/2026/05/Ruskina-Logo.svg" alt="Ruskiña" class="nav-logo-img" /></a>
+    <a href="#" class="nav-logo" aria-label="Ruskiña">
+      <img src="https://ruskina.seolifeteam.com/wp-content/uploads/2026/05/Ruskina-Logo.svg" alt="Ruskiña" class="nav-logo-img" />
+    </a>
 
     <ul class="nav-links" id="mainNavLinks">
       <li><a href="categorias.html">Tienda</a></li>
@@ -1033,375 +705,263 @@
   <div class="cat-nav">
     <a href="categorias.html">Pulseras</a>
     <a href="categorias.html">Collares</a>
-    <a href="categorias.html">Pendientes</a>
+    <a href="categorias.html" class="active">Pendientes</a>
     <a href="categorias.html">Aros</a>
     <a href="categorias.html">Piercings</a>
     <a href="categorias.html">Básicos</a>
   </div>
 
-  <!-- HERO -->
-  <section class="hero">
-    <div class="hero-bg" id="heroBg" style="background-image: url('https://ruskina.seolifeteam.com/wp-content/uploads/2026/05/magnific_use-the-uploaded-referenc_hERg0lovqL.webp')"></div>
-    <div class="hero-overlay"></div>
-    <div class="hero-content">
-      <p class="hero-eyebrow">Nueva Colección — Primavera 2025</p>
-      <h1 class="hero-title">Joyería que<br>te define</h1>
-      <a href="categorias.html" class="hero-cta">Explorar Colección</a>
-    </div>
-  </section>
+  <!-- BREADCRUMB -->
+  <nav class="breadcrumb" aria-label="Migas de pan">
+    <a href="#">Inicio</a>
+    <span class="sep">›</span>
+    <a href="categorias.html">Tienda</a>
+    <span class="sep">›</span>
+    <span class="current">Pendientes</span>
+  </nav>
 
-  <!-- TRENDING PRODUCTS -->
-  <section>
-    <div class="section-header">
-      <div>
-        <p class="section-label">Más vendidos</p>
-        <h2 class="section-title">TOP #10</h2>
-      </div>
-      <div style="display:flex;align-items:center;gap:24px">
-        <a href="categorias.html" class="section-link">Ver todo</a>
-        <div class="carousel-nav">
-          <button class="arr-btn"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg></button>
-          <button class="arr-btn"><svg viewBox="0 0 24 24"><polyline points="9 6 15 12 9 18"/></svg></button>
-        </div>
-      </div>
-    </div>
-
-    <div class="carousel-wrap">
-      <div class="carousel">
-
-        <!-- Card 1: Cosmic Star Charm Bracelet -->
-        <div class="product-card">
-          <div class="product-card__img-wrap">
-            <div class="product-card__tags">
-              <span class="tag">Icono</span>
-              <span class="tag filled">Tendencia</span>
-            </div>
-            <button class="product-card__wish">
-              <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
-            </button>
-            <!-- Joya sobre fondo blanco -->
-            <img class="product-card__img-product"
-              src="https://www.astridandmiyu.com/cdn/shop/files/AM24-Q1C-B-COS-ST-G-165_35a18913-beb7-446f-ad1c-0f5eb5a24206.jpg?v=1708601313&width=540"
-              alt="Pulsera Estrellas" loading="lazy" />
-          </div>
-          <img class="product-card__img-model"
-            src="https://www.astridandmiyu.com/cdn/shop/files/AM24-Q1C-B-COS-ST-G-165_2_b79f6d10-a5da-4a8c-8136-1e7413bcf3a7.jpg?v=1708601318&width=540"
-            alt="Pulsera Estrellas modelo" loading="lazy" />
-          <div class="product-card__info">
-            <div class="product-card__name">Pulsera CAMIÑO</div>
-            <div class="product-card__price">23,90 €</div>
-            <div class="product-card__material">Pulseras</div>
-            <div class="product-card__stars">
-              <span class="stars">★★★★★</span>
-              <span class="review-count">(416)</span>
-            </div>
-            <div class="product-card__swatches">
-              <div class="swatch gold active"></div>
-              <div class="swatch silver"></div>
-            </div>
-          </div>
-          <button class="product-card__add">
-            <svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
-          </button>
-        </div>
-
-        <!-- Card 2: Cosmic Star Huggies -->
-        <div class="product-card">
-          <div class="product-card__img-wrap">
-            <div class="product-card__tags">
-              <span class="tag">Icono</span>
-              <span class="tag filled">Tendencia</span>
-            </div>
-            <button class="product-card__wish">
-              <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
-            </button>
-            <img class="product-card__img-product"
-              src="https://www.astridandmiyu.com/cdn/shop/products/AUG-G-1_3d1a78d7-5d22-4b2a-a71d-3bcf3121ffd0.jpg?v=1664960403&width=540"
-              alt="Aros Cosmic Star" loading="lazy" />
-          </div>
-          <img class="product-card__img-model"
-              src="https://www.astridandmiyu.com/cdn/shop/products/AM22-Q3D1-HUG-CS-BOL-G_2_528bc6af-05b5-4b50-8571-2068ca538a05.jpg?v=1664960403&width=540"
-              alt="Aros Cosmic Star modelo" loading="lazy" />
-          <div class="product-card__info">
-            <div class="product-card__name">Aro OVAL</div>
-            <div class="product-card__price">26,90 €</div>
-            <div class="product-card__material">Pendientes > Aros</div>
-            <div class="product-card__stars">
-              <span class="stars">★★★★★</span>
-              <span class="review-count">(1233)</span>
-            </div>
-            <div class="product-card__swatches">
-              <div class="swatch gold active"></div>
-              <div class="swatch silver"></div>
-            </div>
-          </div>
-          <button class="product-card__add">
-            <svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
-          </button>
-        </div>
-
-        <!-- Card 3: Wave Huggies -->
-        <div class="product-card">
-          <div class="product-card__img-wrap">
-            <div class="product-card__tags">
-              <span class="tag filled">Tendencia</span>
-            </div>
-            <button class="product-card__wish">
-              <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
-            </button>
-            <img class="product-card__img-product"
-              src="https://www.astridandmiyu.com/cdn/shop/files/AM25-Q3C-CUFF-WAV-G.jpg?v=1756889781&width=540"
-              alt="Aros Wave" loading="lazy" />
-          </div>
-          <img class="product-card__img-model"
-              src="https://www.astridandmiyu.com/cdn/shop/files/AM22-ENER-HUG-W-G2.jpg?v=1756889781&width=540"
-              alt="Aros Wave modelo" loading="lazy" />
-          <div class="product-card__info">
-            <div class="product-card__name">Aro ROMBO</div>
-            <div class="product-card__price">29,90 €</div>
-            <div class="product-card__material">Pendientes > Aros</div>
-            <div class="product-card__stars">
-              <span class="stars">★★★★★</span>
-              <span class="review-count">(108)</span>
-            </div>
-            <div class="product-card__swatches">
-              <div class="swatch gold active"></div>
-              <div class="swatch silver"></div>
-            </div>
-          </div>
-          <button class="product-card__add">
-            <svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
-          </button>
-        </div>
-
-        <!-- Card 4: Pavé Crystal Illusion Huggies -->
-        <div class="product-card">
-          <div class="product-card__img-wrap">
-            <div class="product-card__tags">
-              <span class="tag filled">Tendencia</span>
-            </div>
-            <button class="product-card__wish">
-              <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
-            </button>
-            <img class="product-card__img-product"
-              src="https://www.astridandmiyu.com/cdn/shop/files/AM24-Q4F-HUG-ILL-COS-G_1_63fd5d73-e222-4803-8789-4e41758abde1.jpg?v=1729265737&width=540"
-              alt="Aros Pavé Crystal" loading="lazy" />
-          </div>
-          <img class="product-card__img-model"
-              src="https://www.astridandmiyu.com/cdn/shop/files/AM24-Q4F-HUG-ILL-COS-G_2_83460d8c-c358-448f-b3c0-96fdaf604582.jpg?v=1729265737&width=540"
-              alt="Aros Pavé Crystal modelo" loading="lazy" />
-          <div class="product-card__info">
-            <div class="product-card__name">Pendientes ORBITA</div>
-            <div class="product-card__price">64,90 €</div>
-            <div class="product-card__material">Pendientes > Aros</div>
-            <div class="product-card__stars">
-              <span class="stars">★★★★★</span>
-              <span class="review-count">(874)</span>
-            </div>
-            <div class="product-card__swatches">
-              <div class="swatch gold active"></div>
-              <div class="swatch silver"></div>
-            </div>
-          </div>
-          <button class="product-card__add">
-            <svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
-          </button>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- MARQUEE -->
-  <div class="marquee-strip">
-    <div class="marquee-inner">
-      <span class="marquee-item">Hecho con amor</span><span class="marquee-dot">✦</span>
-      <span class="marquee-item">Plata reciclada</span><span class="marquee-dot">✦</span>
-      <span class="marquee-item">Bañado en oro 18k</span><span class="marquee-dot">✦</span>
-      <span class="marquee-item">Diseño atemporal</span><span class="marquee-dot">✦</span>
-      <span class="marquee-item">Envío gratis</span><span class="marquee-dot">✦</span>
-      <span class="marquee-item">Joyería con nome galego</span><span class="marquee-dot">✦</span>
-      <span class="marquee-item">Hecho con amor</span><span class="marquee-dot">✦</span>
-      <span class="marquee-item">Plata de ley</span><span class="marquee-dot">✦</span>
-      <span class="marquee-item">Bañado en oro 18k</span><span class="marquee-dot">✦</span>
-      <span class="marquee-item">Diseño atemporal</span><span class="marquee-dot">✦</span>
-      <span class="marquee-item">Envío gratis</span><span class="marquee-dot">✦</span>
-      <span class="marquee-item">Joyería con nome galego</span><span class="marquee-dot">✦</span>
-    </div>
+  <!-- CATEGORY HEADER -->
+  <div class="cat-header">
+    <h1 class="cat-header__title">Pendientes</h1>
+    <p class="cat-header__desc">Pendientes artesanales bañados en oro 18k: diseños únicos, atemporales y llenos de personalidad para brillar en cada momento.</p>
   </div>
 
-  <!-- CATEGORIES -->
-  <section class="categories">
-    <div class="section-header" style="padding-left:0;padding-right:0;margin-bottom:24px">
-      <div>
-        <p class="section-label">Explorar por</p>
-        <h2 class="section-title">Categorías</h2>
-      </div>
-      <a href="categorias.html" class="section-link">Ver todo</a>
-    </div>
-    <div class="categories-grid">
-      <div class="cat-card">
-        <img src="https://www.astridandmiyu.com/cdn/shop/files/Sub_categories_Evergreen_BestSellers.png?v=1778146674&width=420" alt="Bestsellers" loading="lazy" />
-        <div class="cat-card-overlay"></div>
-        <div class="cat-card-label">
-          <span class="cat-card-name">Bestsellers</span>
-          <span class="cat-card-link">Ver →</span>
+  <!-- SUBCATEGORY PILLS -->
+  <div class="subcat-row" role="navigation" aria-label="Subcategorías">
+    <!-- Pendientes -->
+    <a href="categorias.html" class="subcat-pill">
+      <img class="subcat-pill__img"
+        src="https://www.astridandmiyu.com/cdn/shop/files/AM26-Q1C-HUG-ILL-TWST-G_a35cca5a-8765-4397-bf8a-eeb6218fec13.jpg?v=1767868314&width=120"
+        alt="Pendientes" loading="lazy" />
+      <span class="subcat-pill__name">Pendientes</span>
+    </a>
+    <!-- Aros -->
+    <a href="categorias.html" class="subcat-pill">
+      <img class="subcat-pill__img"
+        src="https://www.astridandmiyu.com/cdn/shop/products/AM22-Q4D1-HUG-CEL-G.jpg?v=1664960792&width=120"
+        alt="Aros" loading="lazy" />
+      <span class="subcat-pill__name">Aros</span>
+    </a>
+    <!-- Piercings -->
+    <a href="categorias.html" class="subcat-pill">
+      <img class="subcat-pill__img"
+        src="https://www.astridandmiyu.com/cdn/shop/products/AM22-Q3D1-R-CS-L-G_93ec256a-8db8-47b0-9c4f-2e1913bc99bd.jpg?v=1664960497&width=120"
+        alt="Piercings" loading="lazy" />
+      <span class="subcat-pill__name">Piercings</span>
+    </a>
+  </div>
+
+  <!-- FILTER BAR -->
+  <div class="filter-bar">
+    <button class="filter-btn" type="button" aria-label="Abrir filtros">
+      <svg viewBox="0 0 24 24" stroke-width="1.7">
+        <line x1="4" y1="6" x2="20" y2="6"/>
+        <line x1="4" y1="12" x2="14" y2="12"/>
+        <line x1="4" y1="18" x2="17" y2="18"/>
+        <circle cx="17" cy="6" r="2.5"/>
+        <circle cx="17" cy="12" r="2.5"/>
+        <circle cx="20" cy="18" r="2.5"/>
+      </svg>
+      Filtrar
+    </button>
+    <span class="filter-count">12 productos</span>
+  </div>
+
+  <!-- PRODUCTS GRID -->
+  <section class="products-section" aria-label="Productos">
+    <div class="products-grid">
+
+      <!-- Producto 1 -->
+      <div class="product-card">
+        <div class="product-card__img-wrap">
+          <div class="product-card__tags"><span class="tag filled">Nuevo</span></div>
+          <button class="product-card__wish"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button>
+          <img class="product-card__img-product"
+            src="https://www.astridandmiyu.com/cdn/shop/files/AM26-Q1C-HUG-ILL-TWST-G_a35cca5a-8765-4397-bf8a-eeb6218fec13.jpg?v=1767868314&width=540"
+            alt="Pendientes Trebol" loading="lazy" />
         </div>
-      </div>
-      <div class="cat-card">
-        <img src="https://www.astridandmiyu.com/cdn/shop/files/Earrings_528fb9b5-db24-489a-bfbb-a6c7a512b556.png?v=1777625515&width=420" alt="Pendientes" loading="lazy" />
-        <div class="cat-card-overlay"></div>
-        <div class="cat-card-label">
-          <span class="cat-card-name">Pendientes</span>
-          <span class="cat-card-link">Ver →</span>
+        <img class="product-card__img-model"
+          src="https://www.astridandmiyu.com/cdn/shop/files/AM26-Q1C-HUG-ILL-TWST-G_2.jpg?v=1767868314&width=540"
+          alt="Pendientes Trebol modelo" loading="lazy" />
+        <div class="product-card__info">
+          <div class="product-card__name">Pendientes TREBOL</div>
+          <div class="product-card__price">34,90 €</div>
+          <div class="product-card__material">Pendientes › Aros</div>
+          <div class="product-card__stars"><span class="stars">★★★★★</span><span class="review-count">(38)</span></div>
+          <div class="product-card__swatches"><div class="swatch gold active"></div><div class="swatch silver"></div></div>
         </div>
+        <button class="product-card__add"><svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></button>
       </div>
-      <div class="cat-card">
-        <img src="https://www.astridandmiyu.com/cdn/shop/files/Sub_categories_Evergreen_Bracelets.png?v=1778146682&width=420" alt="Pulseras" loading="lazy" />
-        <div class="cat-card-overlay"></div>
-        <div class="cat-card-label">
-          <span class="cat-card-name">Pulseras</span>
-          <span class="cat-card-link">Ver →</span>
+
+      <!-- Producto 2 -->
+      <div class="product-card">
+        <div class="product-card__img-wrap">
+          <div class="product-card__tags"><span class="tag">Icono</span><span class="tag filled">Nuevo</span></div>
+          <button class="product-card__wish"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button>
+          <img class="product-card__img-product"
+            src="https://www.astridandmiyu.com/cdn/shop/products/AM22-Q4D1-HUG-CEL-G.jpg?v=1664960792&width=540"
+            alt="Pendientes Bolboreta" loading="lazy" />
         </div>
-      </div>
-      <div class="cat-card">
-        <img src="https://www.astridandmiyu.com/cdn/shop/files/Sub_categories_Evergreen_Necklaces.png?v=1778146689&width=420" alt="Collares" loading="lazy" />
-        <div class="cat-card-overlay"></div>
-        <div class="cat-card-label">
-          <span class="cat-card-name">Collares</span>
-          <span class="cat-card-link">Ver →</span>
+        <img class="product-card__img-model"
+          src="https://www.astridandmiyu.com/cdn/shop/products/AM22-Q4D1-HUG-CEL-G_4.jpg?v=1664960792&width=540"
+          alt="Pendientes Bolboreta modelo" loading="lazy" />
+        <div class="product-card__info">
+          <div class="product-card__name">Pendientes BOLBORETA</div>
+          <div class="product-card__price">29,90 €</div>
+          <div class="product-card__material">Pendientes › Básicos</div>
+          <div class="product-card__stars"><span class="stars">★★★★★</span><span class="review-count">(21)</span></div>
+          <div class="product-card__swatches"><div class="swatch gold active"></div><div class="swatch silver"></div></div>
         </div>
+        <button class="product-card__add"><svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></button>
       </div>
-      <div class="cat-card">
-        <img src="https://www.astridandmiyu.com/cdn/shop/files/Sub_categories_Evergreen_Rings.png?v=1778146696&width=420" alt="Anillos" loading="lazy" />
-        <div class="cat-card-overlay"></div>
-        <div class="cat-card-label">
-          <span class="cat-card-name">Aros</span>
-          <span class="cat-card-link">Ver →</span>
+
+      <!-- Producto 3 -->
+      <div class="product-card">
+        <div class="product-card__img-wrap">
+          <div class="product-card__tags"><span class="tag">Tendencia</span></div>
+          <button class="product-card__wish"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button>
+          <img class="product-card__img-product"
+            src="https://www.astridandmiyu.com/cdn/shop/files/AM24-Q2PB-H-PRL-CHRM-G_1.jpg?v=1718795994&width=540"
+            alt="Aros Perla" loading="lazy" />
         </div>
-      </div>
-      <div class="cat-card">
-        <img src="https://www.astridandmiyu.com/cdn/shop/files/Sub_categories_Evergreen_NewIn.png?v=1778146702&width=420" alt="Novedades" loading="lazy" />
-        <div class="cat-card-overlay"></div>
-        <div class="cat-card-label">
-          <span class="cat-card-name">Piercings</span>
-          <span class="cat-card-link">Ver →</span>
+        <img class="product-card__img-model"
+          src="https://www.astridandmiyu.com/cdn/shop/files/AM24-Q2PB-H-PRL-CHRM-G_2.jpg?v=1718795994&width=540"
+          alt="Aros Perla modelo" loading="lazy" />
+        <div class="product-card__info">
+          <div class="product-card__name">Aros PERLA</div>
+          <div class="product-card__price">44,90 €</div>
+          <div class="product-card__material">Pendientes › Aros</div>
+          <div class="product-card__stars"><span class="stars">★★★★★</span><span class="review-count">(52)</span></div>
+          <div class="product-card__swatches"><div class="swatch gold active"></div><div class="swatch silver"></div></div>
         </div>
+        <button class="product-card__add"><svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></button>
       </div>
+
+      <!-- Producto 4 -->
+      <div class="product-card">
+        <div class="product-card__img-wrap">
+          <div class="product-card__tags"><span class="tag">Icono</span></div>
+          <button class="product-card__wish"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button>
+          <img class="product-card__img-product"
+            src="https://www.astridandmiyu.com/cdn/shop/files/AM24-Q1C-B-COS-ST-G-165_35a18913-beb7-446f-ad1c-0f5eb5a24206.jpg?v=1708601313&width=540"
+            alt="Pendientes Estrella" loading="lazy" />
+        </div>
+        <img class="product-card__img-model"
+          src="https://www.astridandmiyu.com/cdn/shop/files/AM24-Q1C-B-COS-ST-G-165_2_b79f6d10-a5da-4a8c-8136-1e7413bcf3a7.jpg?v=1708601318&width=540"
+          alt="Pendientes Estrella modelo" loading="lazy" />
+        <div class="product-card__info">
+          <div class="product-card__name">Pendientes ESTRELA</div>
+          <div class="product-card__price">27,90 €</div>
+          <div class="product-card__material">Pendientes › Básicos</div>
+          <div class="product-card__stars"><span class="stars">★★★★★</span><span class="review-count">(67)</span></div>
+          <div class="product-card__swatches"><div class="swatch gold active"></div><div class="swatch silver"></div></div>
+        </div>
+        <button class="product-card__add"><svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></button>
+      </div>
+
+      <!-- Producto 5 -->
+      <div class="product-card">
+        <div class="product-card__img-wrap">
+          <div class="product-card__tags"><span class="tag filled">Nuevo</span></div>
+          <button class="product-card__wish"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button>
+          <img class="product-card__img-product"
+            src="https://www.astridandmiyu.com/cdn/shop/products/AM22-Q3D1-R-CS-L-G_93ec256a-8db8-47b0-9c4f-2e1913bc99bd.jpg?v=1664960497&width=540"
+            alt="Pendientes Luna" loading="lazy" />
+        </div>
+        <img class="product-card__img-model"
+          src="https://www.astridandmiyu.com/cdn/shop/products/AM22-Q3D1-R-CS-L-G_2_4792916b-7d49-47ab-8400-74161f888141.jpg?v=1664960497&width=540"
+          alt="Pendientes Luna modelo" loading="lazy" />
+        <div class="product-card__info">
+          <div class="product-card__name">Pendientes LÚA</div>
+          <div class="product-card__price">31,90 €</div>
+          <div class="product-card__material">Pendientes › Piercings</div>
+          <div class="product-card__stars"><span class="stars">★★★★☆</span><span class="review-count">(14)</span></div>
+          <div class="product-card__swatches"><div class="swatch gold active"></div><div class="swatch silver"></div></div>
+        </div>
+        <button class="product-card__add"><svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></button>
+      </div>
+
+      <!-- Producto 6 -->
+      <div class="product-card">
+        <div class="product-card__img-wrap">
+          <div class="product-card__tags"><span class="tag">Icono</span><span class="tag filled">Tendencia</span></div>
+          <button class="product-card__wish"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button>
+          <img class="product-card__img-product"
+            src="https://www.astridandmiyu.com/cdn/shop/files/AM24-Q2PB-H-PRL-CHRM-G_1.jpg?v=1718795994&width=540"
+            alt="Aros Ondas" loading="lazy" />
+        </div>
+        <img class="product-card__img-model"
+          src="https://www.astridandmiyu.com/cdn/shop/files/AM24-Q2PB-H-PRL-CHRM-G_2.jpg?v=1718795994&width=540"
+          alt="Aros Ondas modelo" loading="lazy" />
+        <div class="product-card__info">
+          <div class="product-card__name">Aros ONDA</div>
+          <div class="product-card__price">38,90 €</div>
+          <div class="product-card__material">Pendientes › Aros</div>
+          <div class="product-card__stars"><span class="stars">★★★★★</span><span class="review-count">(29)</span></div>
+          <div class="product-card__swatches"><div class="swatch gold active"></div><div class="swatch silver"></div></div>
+        </div>
+        <button class="product-card__add"><svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></button>
+      </div>
+
+      <!-- Producto 7 -->
+      <div class="product-card">
+        <div class="product-card__img-wrap">
+          <div class="product-card__tags"><span class="tag filled">Nuevo</span></div>
+          <button class="product-card__wish"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button>
+          <img class="product-card__img-product"
+            src="https://www.astridandmiyu.com/cdn/shop/products/AM22-Q4D1-HUG-CEL-G.jpg?v=1664960792&width=540"
+            alt="Pendientes Flor" loading="lazy" />
+        </div>
+        <img class="product-card__img-model"
+          src="https://www.astridandmiyu.com/cdn/shop/products/AM22-Q4D1-HUG-CEL-G_4.jpg?v=1664960792&width=540"
+          alt="Pendientes Flor modelo" loading="lazy" />
+        <div class="product-card__info">
+          <div class="product-card__name">Pendientes FLOR</div>
+          <div class="product-card__price">26,90 €</div>
+          <div class="product-card__material">Pendientes › Básicos</div>
+          <div class="product-card__stars"><span class="stars">★★★★★</span><span class="review-count">(41)</span></div>
+          <div class="product-card__swatches"><div class="swatch gold active"></div><div class="swatch silver"></div></div>
+        </div>
+        <button class="product-card__add"><svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></button>
+      </div>
+
+      <!-- Producto 8 -->
+      <div class="product-card">
+        <div class="product-card__img-wrap">
+          <div class="product-card__tags"><span class="tag">Icono</span></div>
+          <button class="product-card__wish"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button>
+          <img class="product-card__img-product"
+            src="https://www.astridandmiyu.com/cdn/shop/files/AM26-Q1C-HUG-ILL-TWST-G_a35cca5a-8765-4397-bf8a-eeb6218fec13.jpg?v=1767868314&width=540"
+            alt="Aros Mini" loading="lazy" />
+        </div>
+        <img class="product-card__img-model"
+          src="https://www.astridandmiyu.com/cdn/shop/files/AM26-Q1C-HUG-ILL-TWST-G_2.jpg?v=1767868314&width=540"
+          alt="Aros Mini modelo" loading="lazy" />
+        <div class="product-card__info">
+          <div class="product-card__name">Aros MINI TWIST</div>
+          <div class="product-card__price">22,90 €</div>
+          <div class="product-card__material">Pendientes › Aros</div>
+          <div class="product-card__stars"><span class="stars">★★★★★</span><span class="review-count">(88)</span></div>
+          <div class="product-card__swatches"><div class="swatch gold active"></div><div class="swatch silver"></div></div>
+        </div>
+        <button class="product-card__add"><svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></button>
+      </div>
+
     </div>
   </section>
 
-  <!-- EDITORIAL -->
-  <section class="editorial">
-    <div class="editorial-img">
-      <img src="https://www.astridandmiyu.com/cdn/shop/files/Bridal_Best_Sellers_Desktop_7fc1417e-feb0-4a42-bd53-063b4922961f.png?v=1774351506&width=1080" alt="Colección Bridal" loading="lazy" />
+  <!-- SEO BLOCK -->
+  <div class="seo-block">
+    <h2 class="seo-block__title">Pendientes artesanales bañados en oro 18k: joyería que cuenta tu historia</h2>
+    <div class="seo-block__body">
+      <p>En Ruskiña creemos que los pendientes son mucho más que un complemento: son una extensión de quien eres. Por eso cada pieza de nuestra colección se diseña con mimo, utilizando materiales de primera calidad bañados en oro de 18 kilates o plata de ley, para que tu joya dure tanto como los recuerdos que la acompañan.</p>
+      <p>Nuestra selección de pendientes abarca desde los modelos más clásicos hasta los diseños más contemporáneos. Los aros son perfectos para quienes buscan un look versátil que funcione tanto en el día a día como en las noches más especiales. Los pendientes colgantes aportan movimiento y elegancia, ideales para destacar en cualquier ocasión. Y si buscas algo más íntimo y personal, nuestra línea de piercings ofrece piezas minimalistas con una gran carga simbólica.</p>
+      <p>Trabajamos con artesanos especializados que dominan técnicas de orfebrería tradicionales combinadas con diseño actual. El resultado son piezas únicas, con acabados impecables que resisten el paso del tiempo sin perder su brillo. Todos nuestros pendientes están elaborados con materiales hipoalergénicos, aptos incluso para las pieles más sensibles.</p>
+      <p>La colección de Pendientes Ruskiña se renueva cada temporada con nuevos diseños que capturan las tendencias del momento sin renunciar a la atemporalidad que nos caracteriza. Desde los icónicos Pendientes Trebol hasta los delicados Aros Perla, cada modelo ha sido pensado para adaptarse a distintos estilos y personalidades. Si eres de las que llevan un solo pendiente o prefieres acumular en el lóbulo, tenemos la pieza perfecta para ti.</p>
+      <p>Envío gratis en pedidos superiores a 80 € y devolución sin complicaciones en 30 días. Comprar pendientes en Ruskiña es tan sencillo como elegir la pieza que mejor te representa: añádela a tu cesta, elige el acabado —oro o plata— y recíbela en casa en 2-3 días laborables. También puedes combinarlo con otros artículos de nuestra tienda para completar un look de joyería coordinado desde la cabeza hasta la muñeca.</p>
+      <p>Si tienes dudas sobre tallas, materiales o combinaciones, nuestro equipo está disponible a través del chat o por email. Queremos que tu experiencia con Ruskiña sea tan especial como las joyas que creamos para ti.</p>
     </div>
-    <div class="editorial-text">
-      <p class="editorial-eyebrow">Colección Especial</p>
-      <h2 class="editorial-title">Joyas para<br>toda la vida</h2>
-      <p class="editorial-body">Cada pieza de Ruskiña nace de la idea de que la joyería debe ser una inversión en belleza duradera. Materiales de calidad superior, diseños atemporales que se adaptan a ti.</p>
-      <a href="categorias.html" class="editorial-cta">Descubrir la colección</a>
-    </div>
-  </section>
-
-  <!-- NOVEDADES CAROUSEL -->
-  <section>
-    <div class="section-header">
-      <div>
-        <p class="section-label">Descubre</p>
-        <h2 class="section-title">Novedades</h2>
-      </div>
-      <a href="categorias.html" class="section-link">Ver todo</a>
-    </div>
-    <div class="carousel-wrap">
-      <div class="carousel">
-        <!-- Card A: Serenity Pearl -->
-        <div class="product-card">
-          <div class="product-card__img-wrap">
-            <div class="product-card__tags"><span class="tag filled">Nuevo</span></div>
-            <button class="product-card__wish"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button>
-            <img class="product-card__img-product"
-              src="https://www.astridandmiyu.com/cdn/shop/files/AM24-Q2PB-H-PRL-CHRM-G_1.jpg?v=1718795994&width=540"
-              alt="Aros Perla" loading="lazy" />
-          </div>
-          <img class="product-card__img-model"
-              src="https://www.astridandmiyu.com/cdn/shop/files/AM24-Q2PB-H-PRL-CHRM-G_2.jpg?v=1718795994&width=540"
-              alt="Aros Perla modelo" loading="lazy" />
-          <div class="product-card__info">
-            <div class="product-card__name">Collar RULIÑA</div>
-            <div class="product-card__price">49,90 €</div>
-            <div class="product-card__material">Collares > Colgantes</div>
-            <div class="product-card__stars"><span class="stars">★★★★★</span><span class="review-count">(52)</span></div>
-            <div class="product-card__swatches"><div class="swatch gold active"></div><div class="swatch silver"></div></div>
-          </div>
-          <button class="product-card__add"><svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></button>
-        </div>
-        <!-- Card B: Crossover Illusion Huggies -->
-        <div class="product-card">
-          <div class="product-card__img-wrap">
-            <div class="product-card__tags"><span class="tag filled">Nuevo</span></div>
-            <button class="product-card__wish"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button>
-            <img class="product-card__img-product"
-              src="https://www.astridandmiyu.com/cdn/shop/files/AM26-Q1C-HUG-ILL-TWST-G_a35cca5a-8765-4397-bf8a-eeb6218fec13.jpg?v=1767868314&width=540"
-              alt="Aros Crossover" loading="lazy" />
-          </div>
-          <img class="product-card__img-model"
-              src="https://www.astridandmiyu.com/cdn/shop/files/AM26-Q1C-HUG-ILL-TWST-G_2.jpg?v=1767868314&width=540"
-              alt="Aros Crossover modelo" loading="lazy" />
-          <div class="product-card__info">
-            <div class="product-card__name">Pendientes TREBOL</div>
-            <div class="product-card__price">34,90 €</div>
-            <div class="product-card__material">Pendientes > Aros</div>
-            <div class="product-card__stars"><span class="stars">★★★★★</span><span class="review-count">(38)</span></div>
-            <div class="product-card__swatches"><div class="swatch gold active"></div><div class="swatch silver"></div></div>
-          </div>
-          <button class="product-card__add"><svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></button>
-        </div>
-        <!-- Card C: Celestial Crystal Huggies -->
-        <div class="product-card">
-          <div class="product-card__img-wrap">
-            <div class="product-card__tags"><span class="tag">Icono</span><span class="tag filled">Nuevo</span></div>
-            <button class="product-card__wish"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button>
-            <img class="product-card__img-product"
-              src="https://www.astridandmiyu.com/cdn/shop/products/AM22-Q4D1-HUG-CEL-G.jpg?v=1664960792&width=540"
-              alt="Aros Celestial" loading="lazy" />
-          </div>
-          <img class="product-card__img-model"
-              src="https://www.astridandmiyu.com/cdn/shop/products/AM22-Q4D1-HUG-CEL-G_4.jpg?v=1664960792&width=540"
-              alt="Aros Celestial modelo" loading="lazy" />
-          <div class="product-card__info">
-            <div class="product-card__name">Pendientes BOLBORETA</div>
-            <div class="product-card__price">29,90 €</div>
-            <div class="product-card__material">Pendientes > Básicos</div>
-            <div class="product-card__stars"><span class="stars">★★★★★</span><span class="review-count">(21)</span></div>
-            <div class="product-card__swatches"><div class="swatch gold active"></div><div class="swatch silver"></div></div>
-          </div>
-          <button class="product-card__add"><svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></button>
-        </div>
-        <!-- Card D: Cosmic Star Band Ring -->
-        <div class="product-card">
-          <div class="product-card__img-wrap">
-            <div class="product-card__tags"><span class="tag">Icono</span></div>
-            <button class="product-card__wish"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button>
-            <img class="product-card__img-product"
-              src="https://www.astridandmiyu.com/cdn/shop/products/AM22-Q3D1-R-CS-L-G_93ec256a-8db8-47b0-9c4f-2e1913bc99bd.jpg?v=1664960497&width=540"
-              alt="Anillo Estrellas" loading="lazy" />
-          </div>
-          <img class="product-card__img-model"
-              src="https://www.astridandmiyu.com/cdn/shop/products/AM22-Q3D1-R-CS-L-G_2_4792916b-7d49-47ab-8400-74161f888141.jpg?v=1664960497&width=540"
-              alt="Anillo Estrellas modelo" loading="lazy" />
-          <div class="product-card__info">
-            <div class="product-card__name">Collar ANCORA</div>
-            <div class="product-card__price">34,90 €</div>
-            <div class="product-card__material">Collares > Cadenas</div>
-            <div class="product-card__stars"><span class="stars">★★★★★</span><span class="review-count">(67)</span></div>
-            <div class="product-card__swatches"><div class="swatch gold active"></div><div class="swatch silver"></div></div>
-          </div>
-          <button class="product-card__add"><svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></button>
-        </div>
-      </div>
-    </div>
-  </section>
+  </div>
 
   <!-- NEWSLETTER -->
   <section class="newsletter">
@@ -1432,7 +992,7 @@
         </ul>
       </div>
       <div class="footer-col">
-        <h4>INFO</h4>
+        <h4>Info</h4>
         <ul>
           <li><a href="categorias.html">Categorías</a></li>
           <li><a href="#">Quiénes somos</a></li>
@@ -1440,7 +1000,7 @@
         </ul>
       </div>
       <div class="footer-col">
-        <h4>TÉRMINOS</h4>
+        <h4>Términos</h4>
         <ul>
           <li><a href="#">Términos y condiciones</a></li>
           <li><a href="#">Política de privacidad</a></li>
@@ -1451,7 +1011,7 @@
     <div class="footer-bottom">
       <span class="footer-copy">© 2025 Ruskiña. Todos los derechos reservados.</span>
       <div class="footer-bottom-right">
-        <p class="footer-credit">Diseñado con ❤️ <a class="flex items-center gap-1 hover:text-white transition-colors" href="https://seolife.es/" target="_blank" rel="nofollow noopener">SEOLife</a></p>
+        <p class="footer-credit">Diseñado con ❤️ <a href="https://seolife.es/" target="_blank" rel="nofollow noopener">SEOLife</a></p>
         <div class="footer-socials">
           <a href="https://www.instagram.com/_ruskina/" target="_blank" rel="nofollow noopener">Instagram</a>
           <a href="#">TikTok</a>
@@ -1462,16 +1022,14 @@
   </footer>
 
   <script>
-    // Mobile menu toggle
+    // Mobile menu
     const menuToggle = document.querySelector('.menu-toggle');
     const mainNavLinks = document.getElementById('mainNavLinks');
-
     if (menuToggle && mainNavLinks) {
       menuToggle.addEventListener('click', () => {
         const isOpen = mainNavLinks.classList.toggle('is-open');
         menuToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
       });
-
       mainNavLinks.querySelectorAll('a').forEach(link => {
         link.addEventListener('click', () => {
           mainNavLinks.classList.remove('is-open');
@@ -1480,7 +1038,7 @@
       });
     }
 
-    // Swatches toggle
+    // Swatches
     document.querySelectorAll('.product-card__swatches').forEach(wrap => {
       wrap.querySelectorAll('.swatch').forEach(sw => {
         sw.addEventListener('click', () => {
@@ -1490,7 +1048,7 @@
       });
     });
 
-    // Wishlist heart toggle
+    // Wishlist
     document.querySelectorAll('.product-card__wish').forEach(btn => {
       btn.addEventListener('click', () => {
         const path = btn.querySelector('path');
